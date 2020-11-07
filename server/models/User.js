@@ -28,7 +28,8 @@ const userSchema = new Schema({
     },
     islandName: {
         type: String
-    }
+    },
+    
 });
 
 const User = mongoose.model('User', userSchema);
