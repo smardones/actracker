@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const {Bug} = require('../../models');
 const fetch = require("node-fetch");
 
-function seedBugs() {
+db.once('open', async () => {
+    await Bug.deleteMany({});
+
     fetch(`http://acnhapi.com/v1/bugs/`)
     .then(response => response.json())
     .then((data) => { 
@@ -17,7 +19,7 @@ function seedBugs() {
                     time: bug[1].availability.time,
                     monthNorthernArray: bug[1].availability['month-array-northern'],
                     monthSouthernArray: bug[1].availability['month-array-southern'],
-                    time: bug[1].availability['time-array']
+                    timeArray: bug[1].availability['time-array']
                 },
                 price: bug[1].price,
                 priceFlick: bug[1]['price-flick'],
@@ -27,14 +29,11 @@ function seedBugs() {
             });
 
             bugDoc.save();
-
-            
         })
         
     })
-    
-    
+    .then(() => {
+        return console.log('Seeding Complete')})
     .catch(err => console.log(err));
-};
+});
 
-seedBugs();
