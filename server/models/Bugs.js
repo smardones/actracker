@@ -7,9 +7,12 @@ const BugSchema = new Schema({
         type: String,
     },
     availability: {
-        monthNorthern: [{type: Number}],
-        monthSouthern: [{type: Number}],
-        time: [{type: Number}]
+        monthNorthern: {type: String},
+        monthSouthern: {type: String},
+        time: {type: String},
+        monthNorthernArray: [{type: Number}],
+        monthSouthernArray: [{type: Number}],
+        timeArray: [{type: Number}]
     },
     price: {
         type: Number,
