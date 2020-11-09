@@ -26,9 +26,12 @@ const userSchema = new Schema({
         trim: true,
         minlength: 5
     },
-    islandName: {
-        type: String
-    },
+    bugCollection: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Bug'
+        }
+    ]
     
 });
 
