@@ -17,8 +17,12 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-        height: '400px'
+        height: '100%',
     },
+    bugGrid: {
+        marginTop: '70px'
+    }
+    
 
     
 
@@ -36,12 +40,14 @@ export default function Bugs () {
     return (
         <Container>
             <MenuNav />
+            <Typography component='h1'>Bugs</Typography>
                 <Grid
                     container
                     spacing = {3}
                     direction="row"
                     justify="center"
                     alignItems="center"
+                    className={classes.bugGrid}
                 >
                     {bugs.map(bug => (
                     <Grid item md={3} sm={6} xs={12} >
