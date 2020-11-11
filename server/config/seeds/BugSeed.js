@@ -12,7 +12,7 @@ db.once('open', async () => {
         const newBugArray = Object.entries(data);
         newBugArray.forEach((bug) => {
             const bugDoc = new Bug({
-                name: bug[0],
+                name: bug[1].name['name-USen'],
                 availability: {
                     monthNorthern: bug[1].availability['month-northern'],
                     monthSouthern: bug[1].availability['month-southern'],
