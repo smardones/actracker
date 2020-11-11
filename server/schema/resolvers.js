@@ -7,6 +7,10 @@ const resolvers = {
     Query: {
         getBugs: async () => {
             return Bug.find({})
+        },
+
+        users: async () => {
+            return User.find({})
         }
     },
 
