@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MenuNav from '../component/nav';
 import Container from '@material-ui/core/Container';
@@ -21,6 +21,11 @@ const useStyles = makeStyles({
     },
     bugGrid: {
         marginTop: '70px'
+    },
+    secondary: {
+        height: '100%',
+        backgroundColor: 'teal',
+        border: 'solid'
     }
     
 
@@ -29,6 +34,7 @@ const useStyles = makeStyles({
   });
 
 export default function Bugs () {
+    const [ userHasBug, setUserHasBug ] = useState(false);
 
     const {loading, data} = useQuery(QUERY_BUGS);
 
@@ -36,6 +42,10 @@ export default function Bugs () {
     console.log(bugs);
 
     const classes = useStyles();
+
+    const toggleBugState = async () => {
+        setUserHasBug(!userHasBug);
+    }
 
     return (
         <Container>
@@ -50,8 +60,8 @@ export default function Bugs () {
                     className={classes.bugGrid}
                 >
                     {bugs.map(bug => (
-                    <Grid item md={3} sm={6} xs={12} >
-                        <Card className={classes.root} key={bugs._id} >
+                    <Grid item md={3} sm={6} xs={12}>
+                        <Card className={userHasBug ? "classes.secondary" : "classes.root"} key={bugs._id} >
                         <CardActionArea>
                         <CardMedia
                             component='img'
@@ -67,7 +77,7 @@ export default function Bugs () {
                         </CardContent>
                         </CardActionArea>
                         <CardActions>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" onClick={toggleBugState}>
                             Got it!
                         </Button>
                         </CardActions>
