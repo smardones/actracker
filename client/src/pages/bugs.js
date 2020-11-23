@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MenuNav from '../component/nav';
 import Container from '@material-ui/core/Container';
@@ -22,20 +22,10 @@ const useStyles = makeStyles({
     bugGrid: {
         marginTop: '70px'
     },
-    secondary: {
-        height: '100%',
-        backgroundColor: 'teal',
-        border: 'solid'
-    }
-    
-
-    
-
   });
 
 export default function Bugs () {
-    const [ userHasBug, setUserHasBug ] = useState(false);
-
+    
     const {loading, data} = useQuery(QUERY_BUGS);
 
     const bugs = data?.getBugs || [];
@@ -43,9 +33,7 @@ export default function Bugs () {
 
     const classes = useStyles();
 
-    const toggleBugState = async () => {
-        setUserHasBug(!userHasBug);
-    }
+    
 
     return (
         <Container>
@@ -61,7 +49,7 @@ export default function Bugs () {
                 >
                     {bugs.map(bug => (
                     <Grid item md={3} sm={6} xs={12}>
-                        <Card className={userHasBug ? "classes.secondary" : "classes.root"} key={bugs._id} >
+                        <Card key={bugs._id} >
                         <CardActionArea>
                         <CardMedia
                             component='img'

@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
     if (action.type === 'TOGGLE_BUG') {
         return {
             ...state,
-            obtainedBugs: [...action.bugs]
+            obtainedBugs: [...obtainedBugs, action.]
             
         }
     }
