@@ -4,6 +4,7 @@ import MenuNav from '../component/nav';
 import Container from '@material-ui/core/Container';
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_BUGS } from '../utils/queries';
+import reducer from '../utils/reducer';
 
 // Card components
 import { makeStyles } from '@material-ui/core/styles';
@@ -65,8 +66,11 @@ export default function Bugs () {
                         </CardContent>
                         </CardActionArea>
                         <CardActions>
-                        <Button size="small" color="primary" onClick={toggleBugState}>
+                        <Button size="small" color="primary" onClick={reducer('ADD_BUG')}>
                             Got it!
+                        </Button>
+                        <Button size="small" color="primary">
+                            Don't got it!
                         </Button>
                         </CardActions>
                     </Card>

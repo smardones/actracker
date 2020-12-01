@@ -1,4 +1,4 @@
-import TOGGLE_BUG from './actions'
+import ADD_BUG from './actions'
 
 const initialState = {
     obtainedBugs: [],
@@ -10,12 +10,15 @@ const initialState = {
 
 
 export const reducer = (state = initialState, action) => {
-    if (action.type === 'TOGGLE_BUG') {
+    switch (action.type) {
+        case 'ADD_BUG':
         return {
             ...state,
-            obtainedBugs: [...obtainedBugs, action.]
+            obtainedBugs: [...obtainedBugs, action.payload]
             
         }
+
+        default: return state
     }
 }
 
