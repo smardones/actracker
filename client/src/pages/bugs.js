@@ -5,6 +5,8 @@ import Container from '@material-ui/core/Container';
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_BUGS } from '../utils/queries';
 import reducer from '../utils/reducer';
+import { useDispatch } from 'react-redux';
+import { ADD_BUG } from '../utils/actions';
 
 // Card components
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,14 +27,25 @@ const useStyles = makeStyles({
     },
   });
 
-export default function Bugs () {
+export default function Bugs (state) {
     
+    const dispatch = useDispatch();
     const {loading, data} = useQuery(QUERY_BUGS);
 
     const bugs = data?.getBugs || [];
     console.log(bugs);
 
     const classes = useStyles();
+
+    console.log(state);
+    
+    function addBug() {
+        const id = this._id
+        console.log(id);
+        dispatch({
+            type: ADD_BUG,
+            bugId: id})
+    }
 
     
 
@@ -49,8 +62,8 @@ export default function Bugs () {
                     className={classes.bugGrid}
                 >
                     {bugs.map(bug => (
-                    <Grid item md={3} sm={6} xs={12}>
-                        <Card key={bugs._id} >
+                    <Grid item md={3} sm={6} xs={12} key={bug._id}>
+                        <Card >
                         <CardActionArea>
                         <CardMedia
                             component='img'
@@ -66,7 +79,8 @@ export default function Bugs () {
                         </CardContent>
                         </CardActionArea>
                         <CardActions>
-                        <Button size="small" color="primary" onClick={reducer('ADD_BUG')}>
+                        {state.obtained}
+                        <Button size="small" color="primary" onClick={addBug}>
                             Got it!
                         </Button>
                         <Button size="small" color="primary">

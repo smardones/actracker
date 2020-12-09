@@ -9,13 +9,15 @@ const initialState = {
 }
 
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_BUG':
-        return {
-            ...state,
-            obtainedBugs: [...obtainedBugs, action.payload]
-            
+        case 'ADD_BUG': {
+            const id = action.bugId
+            return {
+                ...state,
+                obtainedBugs: [...state.obtainedBugs, id]
+                
+            }
         }
 
         default: return state
