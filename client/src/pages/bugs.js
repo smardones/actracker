@@ -39,12 +39,14 @@ export default function Bugs (state) {
 
     console.log(state);
     
-    function addBug() {
-        const id = this._id
+    function addBug(e) {
+        const id = e.target.parentNode.getAttribute('data-id');
         console.log(id);
         dispatch({
             type: ADD_BUG,
             bugId: id})
+
+        
     }
 
     
@@ -64,30 +66,30 @@ export default function Bugs (state) {
                     {bugs.map(bug => (
                     <Grid item md={3} sm={6} xs={12} key={bug._id}>
                         <Card >
-                        <CardActionArea>
-                        <CardMedia
-                            component='img'
-                            className={classes.media}
-                            image={bug.icon}
-                            title="Bug Card"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2" >
-                            {bug.name}
-                            </Typography>
-            
-                        </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                        {state.obtained}
-                        <Button size="small" color="primary" onClick={addBug}>
-                            Got it!
-                        </Button>
-                        <Button size="small" color="primary">
-                            Don't got it!
-                        </Button>
-                        </CardActions>
-                    </Card>
+                            <CardActionArea>
+                            <CardMedia
+                                component='img'
+                                className={classes.media}
+                                image={bug.icon}
+                                title="Bug Card"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2" >
+                                {bug.name}
+                                </Typography>
+                
+                            </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                            
+                            <Button data-id={bug._id} size="small" color="primary" onClick={addBug}>
+                                Got it!
+                            </Button>
+                            <Button size="small" color="primary">
+                                Don't got it!
+                            </Button>
+                            </CardActions>
+                        </Card>
                   </Grid>
                 ))}
             </Grid>
