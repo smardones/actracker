@@ -4,12 +4,11 @@ import MenuNav from '../component/nav';
 import Container from '@material-ui/core/Container';
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_BUGS } from '../utils/queries';
-import reducer from '../utils/reducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { ADD_BUG } from '../utils/actions';
 
 // Card components
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -20,24 +19,29 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-        height: '100%',
+        height: '100%'
     },
     bugGrid: {
         marginTop: '70px'
     },
+    obtained: {
+        backgroundColor: '#009688',
+        color: 'white'
+    }
   });
 
-export default function Bugs (state) {
+function Bugs ({ caughtBugs }) {
     
     const dispatch = useDispatch();
     const {loading, data} = useQuery(QUERY_BUGS);
+
 
     const bugs = data?.getBugs || [];
     console.log(bugs);
 
     const classes = useStyles();
 
-    console.log(state);
+    console.log(caughtBugs);
     
     function addBug(e) {
         const id = e.target.parentNode.getAttribute('data-id');
@@ -49,7 +53,25 @@ export default function Bugs (state) {
         
     }
 
-    
+    function isObtained(id) {
+        if (!caughtBugs.includes(id)) {
+            return  <Button data-id={id} size="small" color="primary" onClick={addBug}>
+                        Got it!
+                    </Button>
+        } else {
+            return  <Button size="small" color="primary">
+                        Don't got it!
+                    </Button>
+        }
+    }
+
+    function haveBug(id) {
+        if(caughtBugs.includes(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     return (
         <Container>
@@ -65,7 +87,7 @@ export default function Bugs (state) {
                 >
                     {bugs.map(bug => (
                     <Grid item md={3} sm={6} xs={12} key={bug._id}>
-                        <Card >
+                        <Card className = {haveBug(bug._id) ? classes.obtained : ''}>
                             <CardActionArea>
                             <CardMedia
                                 component='img'
@@ -81,13 +103,7 @@ export default function Bugs (state) {
                             </CardContent>
                             </CardActionArea>
                             <CardActions>
-                            
-                            <Button data-id={bug._id} size="small" color="primary" onClick={addBug}>
-                                Got it!
-                            </Button>
-                            <Button size="small" color="primary">
-                                Don't got it!
-                            </Button>
+                            {isObtained(bug._id)}
                             </CardActions>
                         </Card>
                   </Grid>
@@ -96,4 +112,13 @@ export default function Bugs (state) {
         </Container>
     )
 }
+
+function mapStateToProps(state) {
+    return {
+        caughtBugs: state.obtainedBugs
+    };
+
+}
+
+export default connect(mapStateToProps)(Bugs);
 
