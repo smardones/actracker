@@ -1,4 +1,6 @@
-import ADD_BUG from './actions'
+import { isDefinitionNode } from 'graphql'
+import {ADD_BUG, REMOVE_BUG } from './actions'
+
 
 const initialState = {
     obtainedBugs: [],
@@ -17,6 +19,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 obtainedBugs: [...state.obtainedBugs, id]
                 
+            }
+        }
+        case 'REMOVE_BUG': {
+            const id = action.bugId;
+            return {
+                ...state,
+                obtainedBugs: state.obtainedBugs.filter(item => item !== id)
             }
         }
 

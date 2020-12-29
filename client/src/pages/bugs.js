@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_BUGS } from '../utils/queries';
 import { useDispatch, connect } from 'react-redux';
-import { ADD_BUG } from '../utils/actions';
+import { ADD_BUG, REMOVE_BUG } from '../utils/actions';
 
 // Card components
 import { makeStyles, withTheme } from '@material-ui/core/styles';
@@ -50,7 +50,14 @@ function Bugs ({ caughtBugs }) {
             type: ADD_BUG,
             bugId: id})
 
-        
+        }
+    
+    function removeBug(e) {
+        const id = e.target.parentNode.getAttribute('data-id');
+        dispatch({
+            type: REMOVE_BUG,
+            bugId: id
+        })
     }
 
     function isObtained(id) {
@@ -59,7 +66,7 @@ function Bugs ({ caughtBugs }) {
                         Got it!
                     </Button>
         } else {
-            return  <Button size="small" color="primary">
+            return  <Button data-id={id} size="small" color="primary" onClick={removeBug}>
                         Don't got it!
                     </Button>
         }
