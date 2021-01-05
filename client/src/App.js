@@ -9,6 +9,7 @@ import Home from './pages/home';
 import SignUp from './pages/signUp';
 import Welcome from './pages/welcome';
 import Bugs from './pages/bugs';
+import Fish from './pages/fish';
 import NoMatch from './pages/NoMatch';
 
 const client = new ApolloClient({
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/welcome" component={Welcome} />
         <Route exact path="/bugs" component={Bugs} />
+        <Routhe exact path="/fish" component={Fish} />
 
         <Route component={NoMatch} />
         </Switch>

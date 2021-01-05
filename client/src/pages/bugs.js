@@ -104,13 +104,13 @@ function Bugs ({ caughtBugs }) {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2" >
-                                {bug.name}
+                                    {bug.name}
                                 </Typography>
                 
                             </CardContent>
                             </CardActionArea>
                             <CardActions>
-                            {isObtained(bug._id)}
+                                {isObtained(bug._id)}
                             </CardActions>
                         </Card>
                   </Grid>
