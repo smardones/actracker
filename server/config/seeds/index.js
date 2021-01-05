@@ -48,13 +48,30 @@ const seedFish = async function() {
             newFishArray.forEach((fish) => {
                 const fishDoc = new Fish({
                     name: fish[1].name['name-USen'],
-                    
+                    availability: {
+                        monthNorthern: fish[1].availability['month-northern'],
+                        monthSouthern: fish[1].availability['month-southern'],
+                        time: fish[1].availability.time
+                    },
+                    shadowSize: fish[1].shadow,
+                    price: fish[1].price,
+                    priceCj: fish[1]['price-cj'],
+                    description: fish[1]['museum-phrase'],
+                    image: fish[1].image_uri,
+                    icon: fish[1].icon_uri
                 })
+
+                fishDoc.save();
             })
         })
+        .then(() => {
+            return console.log('Fish Complete')
+        })
+        .catch(err => console.log(err));
 }
 
 db.once('open', async () => {
     seedBugs();
+    seedFish();
 });
 
