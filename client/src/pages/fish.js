@@ -30,6 +30,18 @@ const useStyles = makeStyles({
     }
   });
 
+  function isObtained(id) {
+    if (!caughtFish.includes(id)) {
+        return  <Button data-id={id} size="small" color="primary" onClick={addBug}>
+                    Got it!
+                </Button>
+    } else {
+        return  <Button data-id={id} size="small" color="primary" onClick={removeBug}>
+                    Don't got it!
+                </Button>
+    }
+}
+
   function Fish ({ caughtFish }) {
       const dispatch = useDispatch();
       const {loading, datat} = useQuery(QUERY_FISH);

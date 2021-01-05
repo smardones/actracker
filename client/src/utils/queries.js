@@ -15,6 +15,22 @@ export const QUERY_BUGS = gql`
                 monthSouthern
                 time
             }
+        },
+
+        getFish {
+            _id
+            name
+            price
+            priceCj
+            shadow
+            description
+            image
+            icon
+            availability {
+                monthNorthern
+                monthSouthern
+                time
+            }
         }
     }
 `;
