@@ -1,10 +1,11 @@
 const db = require('../connection');
 const mongoose = require('mongoose');
-const {Bug} = require('../../models');
+const {Bug, Fish} = require('../../models');
 const fetch = require("node-fetch");
 
-db.once('open', async () => {
+const seedBugs = async function() {
     await Bug.deleteMany({});
+    
 
     fetch(`http://acnhapi.com/v1/bugs/`)
     .then(response => response.json())
@@ -33,7 +34,27 @@ db.once('open', async () => {
         
     })
     .then(() => {
-        return console.log('Seeding Complete')})
+        return console.log('Bugs Complete')})
     .catch(err => console.log(err));
+};
+
+const seedFish = async function() {
+    await Fish.deleteMany({});
+
+    fetch('http://acnhapi.com/v1/fish/')
+        .then(response => response.json())
+        .then((data) => {
+            const newFishArray = Object.entries(data);
+            newFishArray.forEach((fish) => {
+                const fishDoc = new Fish({
+                    name: fish[1].name['name-USen'],
+                    
+                })
+            })
+        })
+}
+
+db.once('open', async () => {
+    seedBugs();
 });
 
