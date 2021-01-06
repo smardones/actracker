@@ -30,27 +30,36 @@ const useStyles = makeStyles({
     }
   });
 
-  function isObtained(id) {
-    if (!caughtFish.includes(id)) {
-        return  <Button data-id={id} size="small" color="primary" onClick={addBug}>
-                    Got it!
-                </Button>
-    } else {
-        return  <Button data-id={id} size="small" color="primary" onClick={removeBug}>
-                    Don't got it!
-                </Button>
-    }
-}
-
   function Fish ({ caughtFish }) {
       const dispatch = useDispatch();
-      const {loading, datat} = useQuery(QUERY_FISH);
+      const {loading, data} = useQuery(QUERY_FISH);
 
+      console.log(data);
       const fish = data?.getFish || [];
-      console.log(fish);
+      
 
       const classes = useStyles();
 
+      function isObtained(id) {
+        // if (!caughtFish.includes(id)) {
+        //     return  <Button data-id={id} size="small" color="primary" onClick={addFish}>
+        //                 Got it!
+        //             </Button>
+        // } else {
+        //     return  <Button data-id={id} size="small" color="primary" onClick={removeFish}>
+        //                 Don't got it!
+        //             </Button>
+        // }
+        
+      }
+
+      function haveFish(id) {
+        if(caughtFish.includes(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
       return (
           <Container>
@@ -70,7 +79,7 @@ const useStyles = makeStyles({
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
-                                        className={clases.media}
+                                        className={classes.media}
                                         image={fish.icon}
                                         title="Fish Card"
                                     />
@@ -90,6 +99,7 @@ const useStyles = makeStyles({
           </Container>
       )
   }
+
 
 function mapStateToProps(state) {
 return {

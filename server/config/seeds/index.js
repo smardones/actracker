@@ -46,6 +46,7 @@ const seedFish = async function() {
         .then((data) => {
             const newFishArray = Object.entries(data);
             newFishArray.forEach((fish) => {
+                console.log(fish);
                 const fishDoc = new Fish({
                     name: fish[1].name['name-USen'],
                     availability: {

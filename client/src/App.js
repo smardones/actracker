@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/welcome" component={Welcome} />
         <Route exact path="/bugs" component={Bugs} />
-        <Routhe exact path="/fish" component={Fish} />
+        <Route exact path="/fish" component={Fish} />
 
         <Route component={NoMatch} />
         </Switch>

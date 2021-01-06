@@ -16,21 +16,25 @@ export const QUERY_BUGS = gql`
                 time
             }
         },
+    }
+`;
 
+export const QUERY_FISH = gql`
+    query {
         getFish {
             _id
             name
             price
             priceCj
-            shadow
             description
             image
             icon
+            shadowSize
             availability {
                 monthNorthern
                 monthSouthern
                 time
-            }
-        }
+         }
     }
-`;
+  }`
+;

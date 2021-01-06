@@ -28,6 +28,24 @@ const typeDefs = gql`
         timeArray: [Int]
     }
 
+    type Fish {
+        _id: ID
+        name: String
+        availability: FishAvailability
+        price: Int
+        priceCj: Int
+        description: String
+        image: String
+        icon: String
+        shadowSize: String
+    }
+
+    type FishAvailability {
+        monthNorthern: String
+        monthSouthern: String
+        time: String
+    }
+
     type Auth {
         user: User
         token: ID!
@@ -36,6 +54,7 @@ const typeDefs = gql`
     type Query {
         users: [User]
         getBugs: [Bug]
+        getFish: [Fish]
     }
 
     type Mutation {
