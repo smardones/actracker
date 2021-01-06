@@ -7,9 +7,9 @@ const FishSchema = new Schema({
         type: String,
     },
     availability: {
-        monthNorthern: [{type: String}],
-        monthSouthern: [{type: String}],
-        time: [{type: String}]
+        monthNorthern: {type: String},
+        monthSouthern: {type: String},
+        time: {type: String}
     },
     shadowSize: {
         type: String

@@ -28,7 +28,7 @@ const seedBugs = async function() {
                 image: bug[1].image_uri,
                 icon: bug[1].icon_uri
             });
-
+            
             bugDoc.save();
         })
         
@@ -46,12 +46,12 @@ const seedFish = async function() {
         .then((data) => {
             const newFishArray = Object.entries(data);
             newFishArray.forEach((fish) => {
-                console.log(fish);
+                
                 const fishDoc = new Fish({
                     name: fish[1].name['name-USen'],
                     availability: {
-                        monthNorthern: fish[1].availability['month-northern'],
-                        monthSouthern: fish[1].availability['month-southern'],
+                        monthNorthern: fish[1].availability['month-northern'][0],
+                        monthSouthern: fish[1].availability['month-southern'][0],
                         time: fish[1].availability.time
                     },
                     shadowSize: fish[1].shadow,
@@ -61,7 +61,7 @@ const seedFish = async function() {
                     image: fish[1].image_uri,
                     icon: fish[1].icon_uri
                 })
-
+                console.log(fishDoc);
                 fishDoc.save();
             })
         })

@@ -34,9 +34,9 @@ const useStyles = makeStyles({
       const dispatch = useDispatch();
       const {loading, data} = useQuery(QUERY_FISH);
 
-      console.log(data);
-      const fish = data?.getFish || [];
       
+      const fish = data?.getFish || [];
+      console.log(fish);
 
       const classes = useStyles();
 
