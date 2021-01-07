@@ -10,6 +10,7 @@ import SignUp from './pages/signUp';
 import Welcome from './pages/welcome';
 import Bugs from './pages/bugs';
 import Fish from './pages/fish';
+import Fossils from './pages/fossils';
 import NoMatch from './pages/NoMatch';
 
 const client = new ApolloClient({
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/welcome" component={Welcome} />
         <Route exact path="/bugs" component={Bugs} />
         <Route exact path="/fish" component={Fish} />
+        <Route exact path="/fossils" component={Fossils} />
 
         <Route component={NoMatch} />
         </Switch>

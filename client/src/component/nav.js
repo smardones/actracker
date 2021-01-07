@@ -142,9 +142,11 @@ export default function PersistentDrawerLeft() {
           <ListItem button key='Sea Creatures'>
             <ListItemText primary='Sea Creatures' />
           </ListItem>  
+          <Link to='/fish' style={{textDecoration: 'none', color: 'black'}}>
           <ListItem button key='Fossils'>
             <ListItemText primary='Fossils' />
           </ListItem>
+          </Link>
           <ListItem button key='Art'>
             <ListItemText primary='Art' />
           </ListItem>  
