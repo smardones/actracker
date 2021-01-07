@@ -28,6 +28,20 @@ const reducer = (state = initialState, action) => {
                 obtainedBugs: state.obtainedBugs.filter(item => item !== id)
             }
         }
+        case 'ADD_FISH': {
+            const id = action.fishId;
+            return {
+                ...state,
+                obtainedFish: [...state.obtainedFish, id]
+            }
+        }
+        case 'REMOVE_FISH': {
+            const id = action.fishId;
+            return {
+                ...state,
+                obtainedFish: state.obtainedFish.filter(item => item !== id)
+            }
+        }
 
         default: return state
     }

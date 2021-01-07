@@ -16,6 +16,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { ADD_FISH, REMOVE_FISH } from '../utils/actions';
 
 const useStyles = makeStyles({
     root: {
@@ -39,19 +40,36 @@ const useStyles = makeStyles({
       console.log(fish);
 
       const classes = useStyles();
+  
 
-      function isObtained(id) {
-        // if (!caughtFish.includes(id)) {
-        //     return  <Button data-id={id} size="small" color="primary" onClick={addFish}>
-        //                 Got it!
-        //             </Button>
-        // } else {
-        //     return  <Button data-id={id} size="small" color="primary" onClick={removeFish}>
-        //                 Don't got it!
-        //             </Button>
-        // }
+  function addFish(e) {
+      const id = e.target.parentNode.getAttribute('data-id');
+      dispatch({
+          type: ADD_FISH,
+          fishId: id
+      })
+  };
+
+  function removeFish(e) {
+      const id = e.target.parentNode.getAttribute('data-id');
+      dispatch({
+          type: REMOVE_FISH,
+          fishId: id
+      })
+  };
+
+  function isObtained(id) {
+    if (!caughtFish.includes(id)) {
+       return  <Button data-id={id} size="small" color="primary" onClick={addFish}>
+                   Got it!
+               </Button>
+    } else {
+        return  <Button data-id={id} size="small" color="primary" onClick={removeFish}>
+                  Don't got it!
+                </Button>
+    }
         
-      }
+    }
 
       function haveFish(id) {
         if(caughtFish.includes(id)) {
