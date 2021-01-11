@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
             const id = action.fossilId;
             return {
                 ...state,
-                obtainedFish: [...state.obtainedFossils, id]
+                obtainedFossils: [...state.obtainedFossils, id]
             }
         }
         case 'REMOVE_FOSSIL': {
