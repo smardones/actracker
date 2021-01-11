@@ -1,6 +1,6 @@
 const db = require('../connection');
 const mongoose = require('mongoose');
-const {Bug, Fish, Fossil} = require('../../models');
+const {Bug, Fish, Fossil, SeaCreature} = require('../../models');
 const fetch = require("node-fetch");
 
 const seedBugs = async function() {
@@ -86,7 +86,7 @@ const seedFossils = async function() {
                     description: fossil[1]['museum-phrase'],
                     image: fossil[1].image_uri,
                 })
-                console.log(fossilDoc);
+                
                 fossilDoc.save();
             })
         })
@@ -96,9 +96,44 @@ const seedFossils = async function() {
         .catch(err => console.log(err));
 }
 
+const seedSeaCreatures = async function() {
+    await SeaCreature.deleteMany({});
+
+    fetch('http://acnhapi.com/v1/sea/')
+        .then(response => response.json())
+        .then((data) => {
+            const newSCArray = Object.entries(data);
+            newSCArray.forEach((creature) => {
+                
+                const creatureDoc = new SeaCreature({
+                    name: creature[1].name['name-USen'],
+                    availability: {
+                        monthNorthern: creature[1].availability['month-northern'],
+                        monthSouthern: creature[1].availability['month-southern'],
+                        time: creature[1].availability.time,
+                        monthNorthernArray: creature[1].availability['month-array-northern'],
+                        monthSouthernArray: creature[1].availability['month-array-southern'],
+                        timeArray: creature[1].availability['time-array']
+                },
+                    price: creature[1].price,
+                    description: creature[1]['museum-phrase'],
+                    image: bug[1].image_uri,
+                    icon: bug[1].icon_uri
+                })
+                console.log(creatureDoc);
+                creatureDoc.save();
+            })
+        })
+        .then(() => {
+            return console.log('Sea Creatures Complete')
+        })
+        .catch(err => console.log(err));
+}
+
 db.once('open', async () => {
     seedBugs();
     seedFish();
     seedFossils();
+    seedSeaCreatures();
 });
 

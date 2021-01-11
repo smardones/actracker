@@ -26,6 +26,6 @@ const SeaCreaturesSchema = new Schema({
 
 });
 
-const SeaCreatures = mongoose.model('SeaCreatures', SeaCreaturesSchema);
+const SeaCreature = mongoose.model('SeaCreature', SeaCreaturesSchema);
 
-module.exports = SeaCreatures;
+module.exports = SeaCreature;
