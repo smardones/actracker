@@ -1,6 +1,6 @@
 const db = require('../connection');
 const mongoose = require('mongoose');
-const {Bug, Fish} = require('../../models');
+const {Bug, Fish, Fossil} = require('../../models');
 const fetch = require("node-fetch");
 
 const seedBugs = async function() {
@@ -61,7 +61,7 @@ const seedFish = async function() {
                     image: fish[1].image_uri,
                     icon: fish[1].icon_uri
                 })
-                console.log(fishDoc);
+                
                 fishDoc.save();
             })
         })
@@ -71,8 +71,34 @@ const seedFish = async function() {
         .catch(err => console.log(err));
 }
 
+const seedFossils = async function() {
+    await Fossil.deleteMany({});
+
+    fetch('http://acnhapi.com/v1/fossils/')
+        .then(response => response.json())
+        .then((data) => {
+            const newFossilArray = Object.entries(data);
+            newFossilArray.forEach((fossil) => {
+                
+                const fossilDoc = new Fossil({
+                    name: fossil[1].name['name-USen'],
+                    price: fossil[1].price,
+                    description: fossil[1]['museum-phrase'],
+                    image: fossil[1].image_uri,
+                })
+                console.log(fossilDoc);
+                fossilDoc.save();
+            })
+        })
+        .then(() => {
+            return console.log('Fossils Complete')
+        })
+        .catch(err => console.log(err));
+}
+
 db.once('open', async () => {
     seedBugs();
     seedFish();
+    seedFossils();
 });
 

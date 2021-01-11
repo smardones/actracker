@@ -46,6 +46,14 @@ const typeDefs = gql`
         time: String
     }
 
+    type Fossil {
+        _id: ID
+        name: String
+        price: Int
+        description: String
+        image: String
+    }
+
     type Auth {
         user: User
         token: ID!
@@ -55,6 +63,7 @@ const typeDefs = gql`
         users: [User]
         getBugs: [Bug]
         getFish: [Fish]
+        getFossils: [Fossil]
     }
 
     type Mutation {

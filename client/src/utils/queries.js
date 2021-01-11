@@ -38,3 +38,14 @@ export const QUERY_FISH = gql`
     }
   }`
 ;
+
+export const QUERY_FOSSILS = gql`
+    query {
+        getFossils {
+            _id
+            name
+            description
+            price
+            image
+        }
+}`

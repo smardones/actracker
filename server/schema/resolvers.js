@@ -1,4 +1,4 @@
-const { Bug, User, Fish } = require('../models');
+const { Bug, User, Fish, Fossil } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -11,6 +11,10 @@ const resolvers = {
 
         getFish: async () => {
             return Fish.find({})
+        },
+        
+        getFossils: async () => {
+            return Fossil.find({})
         },
 
         users: async () => {
