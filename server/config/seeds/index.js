@@ -110,15 +110,12 @@ const seedSeaCreatures = async function() {
                     availability: {
                         monthNorthern: creature[1].availability['month-northern'],
                         monthSouthern: creature[1].availability['month-southern'],
-                        time: creature[1].availability.time,
-                        monthNorthernArray: creature[1].availability['month-array-northern'],
-                        monthSouthernArray: creature[1].availability['month-array-southern'],
-                        timeArray: creature[1].availability['time-array']
-                },
+                        time: creature[1].availability.time
+                    },
                     price: creature[1].price,
                     description: creature[1]['museum-phrase'],
-                    image: bug[1].image_uri,
-                    icon: bug[1].icon_uri
+                    image: creature[1].image_uri,
+                    icon: creature[1].icon_uri
                 })
                 console.log(creatureDoc);
                 creatureDoc.save();

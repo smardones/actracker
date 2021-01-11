@@ -54,6 +54,22 @@ const typeDefs = gql`
         image: String
     }
 
+    type SeaCreature {
+        _id: ID
+        name: String
+        price: Int
+        description: String
+        icon: String
+        image: String
+        availability: SeaCreatureAvailability
+    }
+
+    type SeaCreatureAvailability {
+        monthNorthern: String
+        monthSouthern: String
+        time: String
+    }
+
     type Auth {
         user: User
         token: ID!
