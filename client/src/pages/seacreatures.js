@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import MenuNav from '../component/nav';
 import Container from '@material-ui/core/Container';
 import { useQuery } from "@apollo/react-hooks";
-import { QUERY_BUGS } from '../utils/queries';
+import { QUERY_SEACREATURES } from '../utils/queries';
 import { useDispatch, connect } from 'react-redux';
-import { ADD_BUG, REMOVE_BUG } from '../utils/actions';
+import { ADD_SEACREATURE, REMOVE_SEACREATURE } from '../utils/actions';
 
 // Card components
 import { makeStyles, withTheme } from '@material-ui/core/styles';
@@ -30,50 +30,50 @@ const useStyles = makeStyles({
     }
   });
 
-  function Bugs ({ caughtBugs }) {
+  function SeaCreatures ({ caughtSea }) {
     
     const dispatch = useDispatch();
-    const {loading, data} = useQuery(QUERY_BUGS);
+    const {loading, data} = useQuery(QUERY_SEACREATURES);
 
 
-    const bugs = data?.getBugs || [];
-    console.log(bugs);
+    const creatures = data?.getSeaCreatures || [];
+    console.log(creatures);
 
     const classes = useStyles();
 
-    console.log(caughtBugs);
+    console.log(caughtSea);
     
-    function addBug(e) {
+    function addSeaCreature(e) {
         const id = e.target.parentNode.getAttribute('data-id');
         console.log(id);
         dispatch({
-            type: ADD_BUG,
-            bugId: id})
+            type: ADD_SEACREATURE,
+            creatureId: id})
 
         }
     
-    function removeBug(e) {
+    function removeSeaCreature(e) {
         const id = e.target.parentNode.getAttribute('data-id');
         dispatch({
-            type: REMOVE_BUG,
-            bugId: id
+            type: REMOVE_SEACREATURE,
+            creatureId: id
         })
     }
 
     function isObtained(id) {
-        if (!caughtBugs.includes(id)) {
-            return  <Button data-id={id} size="small" color="primary" onClick={addBug}>
+        if (!caughtSea.includes(id)) {
+            return  <Button data-id={id} size="small" color="primary" onClick={addSeaCreature}>
                         Got it!
                     </Button>
         } else {
-            return  <Button data-id={id} size="small" color="primary" onClick={removeBug}>
+            return  <Button data-id={id} size="small" color="primary" onClick={removeSeaCreature}>
                         Don't got it!
                     </Button>
         }
     }
 
-    function haveBug(id) {
-        if(caughtBugs.includes(id)) {
+    function haveSeaCreature(id) {
+        if(caughtSea.includes(id)) {
             return true;
         } else {
             return false;
@@ -83,34 +83,34 @@ const useStyles = makeStyles({
     return (
         <Container>
             <MenuNav />
-            <Typography component='h1'>Bugs</Typography>
+            <Typography component='h1'>Sea Creatures</Typography>
                 <Grid
                     container
                     spacing = {3}
                     direction="row"
                     justify="center"
                     alignItems="center"
-                    className={classes.bugGrid}
+                    className={classes.seaCreatureGrid}
                 >
-                    {bugs.map(bug => (
-                    <Grid item md={3} sm={6} xs={12} key={bug._id}>
-                        <Card className = {haveBug(bug._id) ? classes.obtained : ''}>
+                    {creatures.map(creature => (
+                    <Grid item md={3} sm={6} xs={12} key={creature._id}>
+                        <Card className = {haveSeaCreature(creature._id) ? classes.obtained : ''}>
                             <CardActionArea>
                             <CardMedia
                                 component='img'
                                 className={classes.media}
-                                image={bug.icon}
+                                image={creature.icon}
                                 title="Bug Card"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2" >
-                                    {bug.name}
+                                    {creature.name}
                                 </Typography>
                 
                             </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                {isObtained(bug._id)}
+                                {isObtained(creature._id)}
                             </CardActions>
                         </Card>
                   </Grid>
@@ -122,9 +122,9 @@ const useStyles = makeStyles({
 
 function mapStateToProps(state) {
     return {
-        caughtBugs: state.obtainedBugs
+        caughtSea: state.obtainedSeaCreatures
     };
 
 }
 
-export default connect(mapStateToProps)(Bugs);
+export default connect(mapStateToProps)(SeaCreatures);

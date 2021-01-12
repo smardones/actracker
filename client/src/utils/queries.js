@@ -48,4 +48,21 @@ export const QUERY_FOSSILS = gql`
             price
             image
         }
-}`
+}`;
+
+export const QUERY_SEACREATURES = gql`
+    query {
+        getSeaCreatures {
+            _id
+            name
+            price
+            description
+            icon
+            availability {
+                monthNorthern
+                monthSouthern
+                time
+            }
+
+        }
+    }`;

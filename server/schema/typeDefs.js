@@ -80,6 +80,7 @@ const typeDefs = gql`
         getBugs: [Bug]
         getFish: [Fish]
         getFossils: [Fossil]
+        getSeaCreatures: [SeaCreature]
     }
 
     type Mutation {

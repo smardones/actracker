@@ -56,6 +56,20 @@ const reducer = (state = initialState, action) => {
                 obtainedFossils: state.obtainedFossils.filter(item => item !== id)
             }
         }
+        case 'ADD_SEACREATURE': {
+            const id = action.creatureId;
+            return {
+                ...state,
+                obtainedSeaCreatures: [...state.obtainedSeaCreatures, id]
+            }
+        }
+        case 'REMOVE_SEACREATURE': {
+            const id = action.creatureId;
+            return {
+                ...state,
+                obtainedSeaCreatures: state.obtainedSeaCreatures.filter(item => item !== id)
+            }
+        }
         
 
         default: return state

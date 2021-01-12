@@ -11,7 +11,9 @@ import Welcome from './pages/welcome';
 import Bugs from './pages/bugs';
 import Fish from './pages/fish';
 import Fossils from './pages/fossils';
+import SeaCreatures from './pages/seacreatures';
 import NoMatch from './pages/NoMatch';
+
 
 const client = new ApolloClient({
   request: operation => {
@@ -37,6 +39,7 @@ function App() {
         <Route exact path="/bugs" component={Bugs} />
         <Route exact path="/fish" component={Fish} />
         <Route exact path="/fossils" component={Fossils} />
+        <Route exact path="/seacreatures" component={SeaCreatures} />
 
         <Route component={NoMatch} />
         </Switch>
