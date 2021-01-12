@@ -66,3 +66,15 @@ export const QUERY_SEACREATURES = gql`
 
         }
     }`;
+
+export const QUERY_ART = gql`
+    query {
+        getArt {
+            _id
+            name
+            price
+            sellValue
+            description
+            image
+        }
+    }`;

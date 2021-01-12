@@ -70,6 +70,20 @@ const reducer = (state = initialState, action) => {
                 obtainedSeaCreatures: state.obtainedSeaCreatures.filter(item => item !== id)
             }
         }
+        case 'ADD_ART': {
+            const id = action.artId;
+            return {
+                ...state,
+                obtainedArt: [...state.obtainedArt, id]
+            }
+        }
+        case 'REMOVE_ART': {
+            const id = action.artId;
+            return {
+                ...state,
+                obtainedArt: state.obtainedArt.filter(item => item !== id)
+            }
+        }
         
 
         default: return state

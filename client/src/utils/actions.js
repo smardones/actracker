@@ -6,3 +6,5 @@ export const ADD_FOSSIL = "ADD_FOSSIL";
 export const REMOVE_FOSSIL = "REMOVE_FOSSIL";
 export const ADD_SEACREATURE = "ADD_SEACREATURE";
 export const REMOVE_SEACREATURE = "REMOVE_SEACREATURE";
+export const ADD_ART = "ADD_ART";
+export const REMOVE_ART = "REMOVE_ART";

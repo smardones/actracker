@@ -70,6 +70,15 @@ const typeDefs = gql`
         time: String
     }
 
+    type Art {
+        _id: ID
+        name: String
+        price: Int
+        sellValue: Int
+        description: String
+        image: String
+    }
+
     type Auth {
         user: User
         token: ID!
@@ -81,6 +90,7 @@ const typeDefs = gql`
         getFish: [Fish]
         getFossils: [Fossil]
         getSeaCreatures: [SeaCreature]
+        getArt: [Art]
     }
 
     type Mutation {

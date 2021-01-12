@@ -12,6 +12,7 @@ import Bugs from './pages/bugs';
 import Fish from './pages/fish';
 import Fossils from './pages/fossils';
 import SeaCreatures from './pages/seacreatures';
+import Art from './pages/art';
 import NoMatch from './pages/NoMatch';
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/fish" component={Fish} />
         <Route exact path="/fossils" component={Fossils} />
         <Route exact path="/seacreatures" component={SeaCreatures} />
+        <Route exact path="/art" component={Art} />
 
         <Route component={NoMatch} />
         </Switch>

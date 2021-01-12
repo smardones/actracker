@@ -1,6 +1,6 @@
 const db = require('../connection');
 const mongoose = require('mongoose');
-const {Bug, Fish, Fossil, SeaCreature} = require('../../models');
+const {Bug, Fish, Fossil, SeaCreature, Art} = require('../../models');
 const fetch = require("node-fetch");
 
 const seedBugs = async function() {
@@ -117,7 +117,7 @@ const seedSeaCreatures = async function() {
                     image: creature[1].image_uri,
                     icon: creature[1].icon_uri
                 })
-                console.log(creatureDoc);
+                
                 creatureDoc.save();
             })
         })
@@ -127,10 +127,37 @@ const seedSeaCreatures = async function() {
         .catch(err => console.log(err));
 }
 
+const seedArt = async function() {
+    await Art.deleteMany({});
+
+    fetch('http://acnhapi.com/v1/art/')
+        .then(response => response.json())
+        .then((data) => {
+            const newArtArray = Object.entries(data);
+            newArtArray.forEach((artPiece) => {
+                
+                const artDoc = new Art({
+                    name: artPiece[1].name['name-USen'],
+                    price: artPiece[1].price,
+                    description: artPiece[1]['museum-phrase'],
+                    image: artPiece[1].image_uri,
+                    sellValue: artPiece[1]['sell-price']
+                })
+                console.log(artDoc);
+                artDoc.save();
+            })
+        })
+        .then(() => {
+            return console.log('Art Complete')
+        })
+        .catch(err => console.log(err));
+}
+
 db.once('open', async () => {
     seedBugs();
     seedFish();
     seedFossils();
     seedSeaCreatures();
+    seedArt();
 });
 
