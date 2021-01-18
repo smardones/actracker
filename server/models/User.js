@@ -30,9 +30,32 @@ const userSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Bug'
+        },
+    ],
+    fishCollection: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Fish'
+        }
+    ],
+    seaCreatureCollection: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'SeaCreature'
+        }
+    ],
+    fossilCollection: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Fossil'
+        }
+    ],
+    artCollection: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Art'
         }
     ]
-    
 });
 
 userSchema.pre('save', async function(next) {

@@ -11,6 +11,7 @@ const seedBugs = async function() {
     .then(response => response.json())
     .then((data) => { 
         const newBugArray = Object.entries(data);
+        
         newBugArray.forEach((bug) => {
             const bugDoc = new Bug({
                 name: bug[1].name['name-USen'],
@@ -45,6 +46,7 @@ const seedFish = async function() {
         .then(response => response.json())
         .then((data) => {
             const newFishArray = Object.entries(data);
+            
             newFishArray.forEach((fish) => {
                 
                 const fishDoc = new Fish({
@@ -61,7 +63,7 @@ const seedFish = async function() {
                     image: fish[1].image_uri,
                     icon: fish[1].icon_uri
                 })
-                
+                console.log(fishDoc)
                 fishDoc.save();
             })
         })
@@ -134,6 +136,7 @@ const seedArt = async function() {
         .then(response => response.json())
         .then((data) => {
             const newArtArray = Object.entries(data);
+            
             newArtArray.forEach((artPiece) => {
                 
                 const artDoc = new Art({
@@ -143,7 +146,7 @@ const seedArt = async function() {
                     image: artPiece[1].image_uri,
                     sellValue: artPiece[1]['sell-price']
                 })
-                console.log(artDoc);
+                
                 artDoc.save();
             })
         })
