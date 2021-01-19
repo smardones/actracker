@@ -1,7 +1,15 @@
 import { createStore } from 'redux';
+import { loadState, saveState } from './localStorage';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducer';
 
-const store = createStore(reducer, composeWithDevTools());
+const persistedState = loadState();
 
-export default store;
+const store = createStore(reducer, persistedState, composeWithDevTools());
+store.subscribe(() => {
+    saveState(store.getState());
+  });
+  
+export default store
+
+

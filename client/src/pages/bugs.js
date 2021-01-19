@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { QUERY_BUGS } from '../utils/queries';
 import { useDispatch, connect } from 'react-redux';
 import { ADD_BUG, REMOVE_BUG } from '../utils/actions';
+import { idbPromise } from '../utils/helpers';
 
 // Card components
 import { makeStyles, withTheme } from '@material-ui/core/styles';
@@ -37,27 +38,43 @@ function Bugs ({ caughtBugs }) {
 
 
     const bugs = data?.getBugs || [];
+    
     console.log(bugs);
+    useEffect(() => {
+        if (bugs) {
+            bugs.forEach(critter => {
+                idbPromise('bugs', 'put', critter)
+            });
+        }
+    })
 
     const classes = useStyles();
 
-    console.log(caughtBugs);
     
     function addBug(e) {
         const id = e.target.parentNode.getAttribute('data-id');
-        console.log(id);
+        const newBug = {
+            _id: id
+        }
         dispatch({
             type: ADD_BUG,
-            bugId: id})
+            bugId: id});
+
+        idbPromise('caughtBugs', 'put', newBug)
 
         }
     
     function removeBug(e) {
         const id = e.target.parentNode.getAttribute('data-id');
+        const removedBug = {
+            _id: id
+        }
         dispatch({
             type: REMOVE_BUG,
             bugId: id
         })
+
+        idbPromise('caughtBugs', 'delete', removedBug)
     }
 
     function isObtained(id) {
