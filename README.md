@@ -15,8 +15,8 @@ Email: thor@fake.com
 
 Password: ThorLoki
 
-![Fish page](/src/assets/images/bugpage.png)
-![Sea creatures page](/src/assets/images/scpage.png)
+![Fish page](/client/src/assets/images/bugpage.png)
+![Sea creatures page](/client/src/assets/images/scpage.png)
 
 Once you are logged in, you can use the menu to visit various pages that displays the different items you can collect in the game. 
 
