@@ -23,11 +23,15 @@ const useStyles = makeStyles({
         height: '100%'
     },
     bugGrid: {
-        marginTop: '70px'
+        marginTop: '10px'
     },
     obtained: {
         backgroundColor: '#009688',
         color: 'white'
+    },
+    pageTitle: {
+        fontSize: '3rem',
+        marginTop: '30px'
     }
   });
 
@@ -100,7 +104,7 @@ function Bugs ({ caughtBugs }) {
     return (
         <Container>
             <MenuNav />
-            <Typography component='h1'>Bugs</Typography>
+            <Typography className={classes.pageTitle} component='h1'>Bugs</Typography>
                 <Grid
                     container
                     spacing = {3}

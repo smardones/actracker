@@ -21,12 +21,16 @@ const useStyles = makeStyles({
     root: {
         height: '100%'
     },
-    bugGrid: {
-        marginTop: '70px'
+    artGrid: {
+        marginTop: '10px'
     },
     obtained: {
         backgroundColor: '#009688',
         color: 'white'
+    },
+    pageTitle: {
+        fontSize: '3rem',
+        marginTop: '30px'
     }
   });
 
@@ -79,14 +83,14 @@ function Art ({ collectedArt }) {
     return (
         <Container>
             <MenuNav />
-            <Typography component='h1'>Art</Typography>
+            <Typography className={classes.pageTitle} component='h1'>Art</Typography>
                 <Grid
                     container
                     spacing = {3}
                     direction="row"
                     justify="center"
                     alignItems="center"
-                    className={classes.bugGrid}
+                    className={classes.artGrid}
                 >
                     {retrievedArt.map(artPiece => (
                     <Grid item md={3} sm={6} xs={12} key={artPiece._id}>

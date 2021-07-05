@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  toolbar: theme.mixins.toolbar
 }));
 
 export default function PersistentDrawerLeft() {
@@ -113,6 +114,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <div className={classes.toolbar} />
       <Drawer
         className={classes.drawer}
         variant="persistent"

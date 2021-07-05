@@ -23,11 +23,15 @@ const useStyles = makeStyles({
         height: '100%'
     },
     fishGrid: {
-        marginTop: '70px'
+        marginTop: '10px'
     },
     obtained: {
         backgroundColor: '#009688',
         color: 'white'
+    },
+    pageTitle: {
+        fontSize: '3rem',
+        marginTop: '30px'
     }
   });
 
@@ -82,7 +86,7 @@ const useStyles = makeStyles({
       return (
           <Container>
               <MenuNav />
-              <Typography component='h1'>Fish</Typography>
+              <Typography className={classes.pageTitle} component='h1'>Fish</Typography>
                 <Grid
                     container
                     spacing={3}

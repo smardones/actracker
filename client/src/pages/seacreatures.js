@@ -21,12 +21,16 @@ const useStyles = makeStyles({
     root: {
         height: '100%'
     },
-    bugGrid: {
-        marginTop: '70px'
+    seaCreatureGrid: {
+        marginTop: '10px'
     },
     obtained: {
         backgroundColor: '#009688',
         color: 'white'
+    },
+    pageTitle: {
+        fontSize: '3rem',
+        marginTop: '30px'
     }
   });
 
@@ -83,7 +87,7 @@ const useStyles = makeStyles({
     return (
         <Container>
             <MenuNav />
-            <Typography component='h1'>Sea Creatures</Typography>
+            <Typography className={classes.pageTitle} component='h1'>Sea Creatures</Typography>
                 <Grid
                     container
                     spacing = {3}
